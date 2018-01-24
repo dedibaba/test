@@ -1,0 +1,53 @@
+执行以下代码：
+		public class try_catch {
+			public static int test() {
+				int i=0;
+				try {
+					i++;
+					
+					return i;
+				}catch (Exception e) {
+					System.out.println("exception");
+					i++;
+					return i;
+				}finally {
+					i=i+2;
+					System.out.println("我是finally:"+i);
+				}
+			}
+			public static void main(String[] args) {
+				System.out.println(test());
+			}
+		}
+执行结果：
+		我是finally:3
+		1
+执行以下代码：
+
+		public class try_catch {
+			public static int test() {
+				int i=0;
+				try {
+					i++;
+					throw new Exception();
+				}catch (Exception e) {
+					System.out.println("exception");
+					i++;
+					return i;
+				}finally {
+					i=i+2;
+					System.out.println("我是finally:"+i);
+				}
+			}
+			public static void main(String[] args) {
+				System.out.println(test());
+			}
+		}
+执行结果：
+		我是finally:4
+		2
+从以上执行结果我们可以看出：
+	1、无论try是否抛出异常，finally一定会执行。
+	2、在上面的test()程序中，执行顺序从上往下，但在遇到return时有例外，在遇到renturn时，
+	   程序计算好return返回的结果后，先跳过return语句，把所有程序执行完后，在执行return语句，
+	   return返回的值依旧是一开始就计算好的值。
